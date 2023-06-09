@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Product, createProductDTO, Category } from '../../models/product.model'; //importamos el modelo de datos
 import { Auth,onAuthStateChanged, getAuth} from '@angular/fire/auth';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,7 +16,7 @@ import { ListaProductos } from 'src/app/models/lista-producto.model';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements  OnInit {
+export class ProductsComponent implements OnInit, OnChanges  {
 
   // -- Propiedades --
   cart: Product[] = [];
@@ -72,26 +72,33 @@ export class ProductsComponent implements  OnInit {
     this.route.queryParams.subscribe(params => {
       this.id_lista_compras = params['id'],
       this.iduser = this.auth.currentUser!.uid,
-      console.log('iduser:', this.iduser, 'id_lista_compras:', params['id']);
+      console.log('[app-products] onInit iduser:', this.iduser, 'id_lista_compras:', params['id']);
       this.lista_producto.idlista_compras = this.id_lista_compras;
     });
     // Consultar lista de productos por idlista_compras
+    let lista_producto: any[] = [];
     this.listaProductosService.getFirestore().subscribe(data => {
       //console.log('data:', data);
       //filtrar el array por idlista_compras
-      let lista_producto = data.filter(element => element.idlista_compras === this.id_lista_compras);
+      lista_producto = data.filter(element => element.idlista_compras === this.id_lista_compras);
       //console.log('[app-products]: lista_productos filtro:', lista_producto);
       // -- Agregar productos a la lista de compras --
-      lista_producto.forEach(element => {
-        // buscar en this.products el producto con id=element.idproducto
-        let product = this.products.find(product => product.id === element.idproducto);
-        //console.log('product:', product);
-        if(product) {
-          this.storeService.addToCart(product);
-          this.total = this.storeService.getTotal();
-        }
-      });
+      if(this.cart.length === 0) {
+        lista_producto.forEach(element => {
+          // buscar en this.products el producto con id=element.idproducto
+          let product = this.products.find(product => product.id === element.idproducto);
+          console.log('product:', product);
+          if(product) {
+            this.storeService.addToCart(product);
+            this.total = this.storeService.getTotal();
+          }
+        });
+      }
     });
+  }
+
+  ngOnChanges() {
+
   }
 
   // --------- METODOS ----------
@@ -104,7 +111,7 @@ export class ProductsComponent implements  OnInit {
     this.lista_producto.idproducto = product.id;
     this.lista_producto.estado = true;
     this.listaProductosService.createFirestore(this.lista_producto).then((response) => {
-      console.log('response-create-prod-list: ', response.id, 'id_lista_compras: ', this.id_lista_compras);
+      //console.log('response-create-prod-list: ', response.id, 'id_lista_compras: ', this.id_lista_compras);
     });
   }
 
