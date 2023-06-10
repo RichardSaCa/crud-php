@@ -9,6 +9,5 @@
     // if(isset($conn)){
     //     echo 'La BD tareas_db está conectada';
     // }
-
     
 ?>

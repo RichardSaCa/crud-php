@@ -1,8 +1,8 @@
 <?php
-//INCLUIR LIBRERIAS DE FUNCIONAMIENTO
+
 include_once "cors.php";
 include('conexion_db.php');
-//CABECERAS PARA RECONCER JSON
+
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
@@ -19,12 +19,12 @@ $Company = $data->company;
 $Cost = $data->cost_per_launch;
 
 $empQuery=" 
-        INSERT INTO rockets
-            SET rocket_id='".$Rocket_id."', name='".$Name."', type='".$Type."', active='".$Active."', country='".$Country."', 
-            company='".$Company."', cost_per_launch='".$Cost."'";
+        UPDATE rockets
+            SET  name='".$Name."', type='".$Type."', active='".$Active."', country='".$Country."', 
+            company='".$Company."', cost_per_launch='".$Cost."' WHERE rocket_id = '".$Rocket_id."'";
 
 if( mysqli_query($conn, $empQuery)) {
-    $messgae = "Rocket created Successfully.";
+    $messgae = "Rocket update Successfully.";
     $status = 1;			
 } else {
     $messgae = "Rocket creation failed.";
