@@ -31,10 +31,14 @@ export class IndexComponent {
     this.router.navigate(['createRocket']);
   }
   updateRocket(idrocket: any, rocket:Rockets){
-
+    this.router.navigate(["/createRocket"], { queryParams: { id: idrocket, rocket: rocket }});
   }
   deleteRocket(rocket: Rockets){
-
+    this.rocketservice.deleteRocket(rocket).subscribe(data =>{
+      this.router.navigateByUrl('/', { skipLocationChange: false }).then(() => {
+        this.router.navigate(['/index']);
+      });
+     });
   }
 
 

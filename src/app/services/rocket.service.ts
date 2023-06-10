@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Rockets } from '../models/rocket.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +13,15 @@ export class RocketService {
   //---METHODS-------
 
   getRockets() {
-    return this.http.get<any>(`${this.ApiPhp}/rocket.php`);
+    return this.http.get<Rockets[]>(`${this.ApiPhp}/rocket.php`);
+  }
+  createRocket(rocket: Rockets): Observable<Rockets>{
+    return this.http.post<any>(`${this.ApiPhp}/createRocket.php`,rocket);
+  }
+  deleteRocket(rocket: Rockets): Observable<Rockets>{
+    return this.http.post<any>(`${this.ApiPhp}/deleteRocket.php`,rocket);
+  }
+  updateRocket(rocket: Rockets){
+    return this.http.post<any>(`${this.ApiPhp}/updateRocket.php`,rocket);
   }
 }
