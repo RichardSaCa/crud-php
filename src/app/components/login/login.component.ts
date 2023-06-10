@@ -25,7 +25,7 @@ export class LoginComponent {
     this.userService.login(this.form.value)
     .then(response => {
       console.log(response);
-      this.router.navigate(['menu']);
+      this.router.navigate(['index']);
     }).catch(error => console.log(error));
   }
 }

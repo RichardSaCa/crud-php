@@ -6,33 +6,31 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductComponent } from './components/product/product.component';
+
 import { NavComponent } from './components/nav/nav.component';
-import { ProductsComponent } from './components/products/products.component';
+
 import { ImgComponent } from './components/img/img.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { NewProductComponent } from './components/new-product/new-product.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
-import { ListaComprasComponent } from './components/lista-compras/lista-compras.component';
-import { CrearListaComprasComponent } from './components/crear-lista-compras/crear-lista-compras.component';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { IndexComponent } from './components/index/index.component';
+import { CreateRocketComponent } from './components/create-rocket/create-rocket.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductComponent,
     NavComponent,
-    ProductsComponent,
     ImgComponent,
     LoginComponent,
     RegisterComponent,
-    ListaComprasComponent,
-    CrearListaComprasComponent,
-    NewProductComponent
+    IndexComponent,
+    CreateRocketComponent,
+
+
   ],
   imports: [
     BrowserModule,

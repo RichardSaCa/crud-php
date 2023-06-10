@@ -1,0 +1,43 @@
+<!--CONTENEDOR DEL NAV-->
+<app-nav></app-nav>
+
+<div class="table-container">
+  <table class="table table-hover" id="consulta_susp">
+    <thead class="table-secondary">
+      <tr>
+          <!-- <th scope="col">Id</th> -->
+          <th scope="col">rocket id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Type</th>
+          <th scope="col">Active</th>
+          <th scope="col">Country</th>
+          <th scope="col">Company</th>
+          <th scope="col">Cost_per_Launch</th>
+          <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let elem of rockets; let indice=index">
+        <td >{{elem.rocket_id}}</td>
+        <td >{{elem.name}}</td>
+        <td >{{elem.type}}</td>
+        <td >{{elem.active}}</td>
+        <td >{{elem.country}}</td>
+        <td >{{elem.company}}</td>
+        <td >{{elem.cost_per_launch}}</td>
+        <td >
+          <div class="d-flex">
+            <div class="px-2"><a class="btn btn-warning"
+                (click)="updateRocket(rockets.indexOf(elem), elem)">Editar</a></div>
+            <div class="px-2"><button class="btn btn-danger" (click)="deleteRocket(elem)">Eliminar</button></div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- BOTON PARA CREAR UNA NUEVA LISTA -->
+<div class="btn-container">
+  <button class="btn btn-success" (click)="addRocket()">Crear Lista</button>
+</div>

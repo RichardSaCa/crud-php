@@ -1,0 +1,80 @@
+<!--CONTENEDOR DEL NAV-->
+<app-nav></app-nav>
+<h1 class="fw-bold fs-3 py-3 text-center">Lista</h1>
+
+<!--CONTENEDOR DE LA TABLA-->
+<div class="card mx-auto">
+  <div class="card-body justify-content-center align-items-center mx-auto" style="width: 50%;">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ingrese los datos de la lista</h5>
+      </div>
+
+    <form [formGroup]="form"  (ngSubmit)="createUpdateRocket()" class="was-validated">
+        <div class="modal-body">
+            <div class="form-group">
+                <!-- <input type="hidden" [(ngModel)]="rocket.rocket_id" formControlName="auxiliar"> -->
+                <label for="rocket_id">rocket id: </label>
+                <span style="color:red" *ngIf="this.form.get('rocket_id')?.errors?.['required']">
+                  (upss!! id no puede ir vacío)
+                </span>
+                <input type="text" [(ngModel)]="rocket.rocket_id" formControlName="rocket_id" class="text_input form-control" required="true" name="rocket_id" >
+            </div>
+            <div class="form-group">
+              <!-- <input type="hidden" [(ngModel)]="rocket.rocket_id" formControlName="auxiliar"> -->
+              <label for="name">Name: </label>
+              <span style="color:red" *ngIf="this.form.get('name')?.errors?.['required']">
+                (upss!! Name no puede ir vacío)
+              </span>
+              <input type="text" [(ngModel)]="rocket.name" formControlName="name" class="text_input form-control" required="true" name="name" >
+            </div>
+            <div class="form-group">
+              <!-- <input type="hidden" [(ngModel)]="rocket.rocket_id" formControlName="auxiliar"> -->
+              <label for="type">Type: </label>
+              <span style="color:red" *ngIf="this.form.get('type')?.errors?.['required']">
+                (upss!! Type no puede ir vacío)
+              </span>
+              <input type="text" [(ngModel)]="rocket.type" formControlName="type" class="text_input form-control" required="true" name="type" >
+            </div>
+            <div class="form-group">
+              <!-- <input type="hidden" [(ngModel)]="rocket.rocket_id" formControlName="auxiliar"> -->
+              <label for="active">Active: </label>
+              <span style="color:red" *ngIf="this.form.get('active')?.errors?.['required']">
+                (upss!! Active no puede ir vacío)
+              </span>
+              <input type="text" [(ngModel)]="rocket.active" formControlName="active" class="text_input form-control" required="true" name="active" >
+            </div>
+            <div class="form-group">
+              <!-- <input type="hidden" [(ngModel)]="rocket.rocket_id" formControlName="auxiliar"> -->
+              <label for="country">Country: </label>
+              <span style="color:red" *ngIf="this.form.get('country')?.errors?.['required']">
+                (upss!! country no puede ir vacío)
+              </span>
+              <input type="text" [(ngModel)]="rocket.country" formControlName="country" class="text_input form-control" required="true" name="country" >
+            </div>
+            <div class="form-group">
+              <!-- <input type="hidden" [(ngModel)]="rocket.rocket_id" formControlName="auxiliar"> -->
+              <label for="company">Company: </label>
+              <span style="color:red" *ngIf="this.form.get('company')?.errors?.['required']">
+                (upss!! company no puede ir vacío)
+              </span>
+              <input type="text" [(ngModel)]="rocket.company" formControlName="company" class="text_input form-control" required="true" name="company" >
+            </div>
+            <div class="form-group">
+              <!-- <input type="hidden" [(ngModel)]="rocket.rocket_id" formControlName="auxiliar"> -->
+              <label for="cost_per_launch">Cost: </label>
+              <span style="color:red" *ngIf="this.form.get('cost_per_launch')?.errors?.['required']">
+                (upss!! Cost no puede ir vacío)
+              </span>
+              <input type="number" [(ngModel)]="rocket.cost_per_launch" formControlName="cost_per_launch" class="text_input form-control" required="true" name="cost_per_launch" >
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="back()" data-dismiss="modal">Cerrar</button>
+            <input type="submit" class="btn btn-primary" [disabled]="form.invalid" value="Guardar">
+        </div>
+    </form>
+  </div>
+</div>
+
+
