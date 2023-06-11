@@ -29,8 +29,6 @@ import { CreateRocketComponent } from './components/create-rocket/create-rocket.
     RegisterComponent,
     IndexComponent,
     CreateRocketComponent,
-
-
   ],
   imports: [
     BrowserModule,

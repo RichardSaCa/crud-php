@@ -9,6 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent {
+
+  //--VARIABLES--
   valores: any;
   rockets: Array<Rockets>;
   iduser: String="";
@@ -16,17 +18,23 @@ export class IndexComponent {
   flag: boolean=true;
   flagDelete: boolean=true;
 
-  constructor(private rocketservice: RocketService, private router: Router, private route: ActivatedRoute){
+  constructor(
+    private rocketservice: RocketService,
+    private router: Router,
+    private route: ActivatedRoute
+  ){
     this.rockets = [];
   }
 
   ngOnInit(): void{
-    this.rocketservice.getRockets().subscribe(r =>{
-      this.rockets = r;
+    this.rocketservice.getRockets().subscribe(result =>{
+      this.rockets = result;
+      console.log("[app-index] Rockets List: ", this.rockets);
     })
-
   }
-//--METHODS--
+
+
+  //--METHODS--
   addRocket(){
     this.router.navigate(['createRocket']);
   }
@@ -36,7 +44,5 @@ export class IndexComponent {
   deleteRocket(rocket: Rockets){
 
   }
-
-
 
 }
