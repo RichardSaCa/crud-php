@@ -18,4 +18,8 @@ export class RocketService {
   getConsulta1() {
     return this.http.get<any>(`${this.ApiPhp2}/consulta1.php`);
   }
+
+  getConsulta2() {
+    return this.http.get<any>(`${this.ApiPhp2}/consulta2.php`);
+  }
 }

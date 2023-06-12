@@ -11,6 +11,7 @@ export class MysqlSelectComponent {
 
   //--VARIABLES--
   rockets:any[] = [];
+  rockets2:any[] = [];
 
   constructor(
     private rocketservice: RocketService
@@ -22,7 +23,11 @@ export class MysqlSelectComponent {
     // Consulta 1: Consulta para obtener el costo total de los lanzamientos de un cohete
     this.rocketservice.getConsulta1().subscribe(result =>{
       this.rockets = result;
-      console.log("[app-mysql-select] Rockets List: ", this.rockets);
+      //console.log("[app-mysql-select] Rockets List: ", this.rockets);
+    })
+    this.rocketservice.getConsulta2().subscribe(result =>{
+      this.rockets2 = result;
+      console.log("[app-mysql-select] Rockets List: ", this.rockets2);
     })
   }
 
