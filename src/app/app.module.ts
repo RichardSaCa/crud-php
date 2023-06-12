@@ -18,6 +18,8 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { IndexComponent } from './components/index/index.component';
 import { CreateRocketComponent } from './components/create-rocket/create-rocket.component';
+import { MysqlSelectComponent } from './components/mysql-select/mysql-select.component';
+import { CurrencyPipe } from './pipes/currency.pipe';
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import { CreateRocketComponent } from './components/create-rocket/create-rocket.
     RegisterComponent,
     IndexComponent,
     CreateRocketComponent,
+    MysqlSelectComponent,
+    CurrencyPipe,
   ],
   imports: [
     BrowserModule,

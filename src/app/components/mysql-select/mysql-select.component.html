@@ -1,0 +1,31 @@
+<!-- TITULO TABLA 1 -->
+<div class="title-container">
+  <div class="title">
+    <h1 class="text-center">Consulta 1</h1>
+  </div>
+</div>
+
+<!-- Contenedor de tabla -->
+<div class="table-container">
+  <table class="table table-hover" id="consulta_susp">
+    <thead class="table-secondary">
+      <tr>
+          <!-- <th scope="col">Id</th> -->
+          <th scope="col">Name</th>
+          <th scope="col">Launch Name</th>
+          <th scope="col">Launch Pad Name</th>
+          <th scope="col">Total cost</th>
+          <th scope="col">Region</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let elem of rockets; let indice=index">
+        <td >{{elem.RocketName}}</td>
+        <td >{{elem.LaunchName}}</td>
+        <td >{{elem.LaunchPadName}}</td>
+        <td >{{elem.SUMA | currency:'USD'}}</td> <!-- pipe for dollar currency:   -->
+        <td >{{elem.region}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

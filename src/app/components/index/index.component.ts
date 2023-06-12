@@ -29,7 +29,7 @@ export class IndexComponent {
   ngOnInit(): void{
     this.rocketservice.getRockets().subscribe(result =>{
       this.rockets = result;
-      console.log("[app-index] Rockets List: ", this.rockets);
+      //console.log("[app-index] Rockets List: ", this.rockets);
     })
   }
 
