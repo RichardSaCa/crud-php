@@ -19,6 +19,7 @@ export class CreateRocketComponent {
     company: '',
     cost_per_launch: 0,
   };
+  rockets: Array<Rockets>;
   form = this.formBuilder.nonNullable.group({
     rocket_id: ['', [Validators.required]],
     name: ['', [Validators.required]],
@@ -39,7 +40,9 @@ export class CreateRocketComponent {
     private router: Router,
     private route: ActivatedRoute,
     private rocketservice: RocketService
-  ) {}
+  ) {
+    this.rockets = [];
+  }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -50,9 +53,20 @@ export class CreateRocketComponent {
     if(this.idrocket){
       this.titulo = "Actualizar";
       this.rocketservice.getRockets().subscribe(data => {
-        let result = data.filter(element => element.rocket_id === this.idrocket);
-        this.rocket = result[0];
+        //data = JSON.parse(data);
+        this.rockets = JSON.parse(data);
+        this.rockets.forEach(element => {
+          if(element.rocket_id === this.idrocket){
+            this.rocket = element;
+            console.log("entra al ifff")
+            return;
+          }
+        });
+
+        //let result = this.data1.filter(element => element.rocket_id === );
+       // this.rocket = result[0];
       });
+
     }else{
       this.titulo = "Crear";
       this.rocket = {

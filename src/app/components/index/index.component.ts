@@ -15,15 +15,22 @@ export class IndexComponent {
   idlistCompra: String="";
   flag: boolean=true;
   flagDelete: boolean=true;
+  message: String="";
 
   constructor(private rocketservice: RocketService, private router: Router, private route: ActivatedRoute){
     this.rockets = [];
   }
 
   ngOnInit(): void{
-    this.rocketservice.getRockets().subscribe(r =>{
-      this.rockets = r;
-    })
+    this.rocketservice.getRockets().subscribe(response =>{
+      //this.rockets = JSON.parse(response);
+        try {
+          JSON.parse(response);
+          this.rockets = JSON.parse(response);
+        } catch (error) {
+          this.message = response;
+        }
+     });
 
   }
 //--METHODS--

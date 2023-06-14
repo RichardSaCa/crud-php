@@ -13,7 +13,7 @@ export class RocketService {
   //---METHODS-------
 
   getRockets() {
-    return this.http.get<Rockets[]>(`${this.ApiPhp}/rocket.php`);
+    return this.http.get(`${this.ApiPhp}/rocket.php`, { responseType: 'text' });
   }
   createRocket(rocket: Rockets): Observable<Rockets>{
     return this.http.post<any>(`${this.ApiPhp}/createRocket.php`,rocket);
