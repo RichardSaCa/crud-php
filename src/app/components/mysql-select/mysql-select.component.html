@@ -1,3 +1,13 @@
+<!--CONTENEDOR DE SLIDER -->
+<div class="slider-container">
+  <div  class="slider">
+    <select class="form-select" aria-label="Default select example" (change)="selectChangeHandler($event)">
+      <option selected>Select a rocket</option>
+      <option *ngFor="let rocket of rockets_slider" value="{{rocket.rocket_id}}">{{rocket.name}}</option>
+    </select>
+  </div>
+</div>
+
 <!-- TITULO TABLA 1 -->
 <div class="title-container">
   <div class="title">

@@ -10,6 +10,8 @@ import { RocketService } from 'src/app/services/rocket.service';
 export class MysqlSelectComponent {
 
   //--VARIABLES--
+  rockets_slider:any[] = [];
+  id_sql:string = "";
   rockets:any[] = [];
   rockets2:any[] = [];
   rockets3:any[] = [];
@@ -21,6 +23,11 @@ export class MysqlSelectComponent {
   }
 
   ngOnInit(): void {
+    // Consultar todos los cohetes para llenar slider de id de cohetes
+    this.rocketservice.getRockets().subscribe(result =>{
+      this.rockets_slider = result;
+      //console.log("[app-mysql-select] Rockets List: ", this.rockets);
+    })
     // Consulta 1: Consulta para obtener el costo total de los lanzamientos de un cohete
     this.rocketservice.getConsulta1().subscribe(result =>{
       this.rockets = result;
@@ -31,10 +38,24 @@ export class MysqlSelectComponent {
     })
     this.rocketservice.getConsulta3().subscribe(result =>{
       this.rockets3 = result;
-      console.log("[app-mysql-select] Rockets List: ", this.rockets3);
+      //console.log("[app-mysql-select] Rockets List: ", this.rockets3);
     })
   }
 
   //--METHODS--
+  selectChangeHandler(event: any){
+    //update the ui
+    this.id_sql = event.target.value;
+    //console.log("[app-mysql-select] id_sql: ", this.id_sql);
 
+    this.rocketservice.getConsulta1(this.id_sql).subscribe(result =>{
+      this.rockets = result;
+    })
+    this.rocketservice.getConsulta2(this.id_sql).subscribe(result =>{
+      this.rockets2 = result;
+    })
+    this.rocketservice.getConsulta3(this.id_sql).subscribe(result =>{
+      this.rockets3 = result;
+    })
+  }
 }

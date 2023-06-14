@@ -7,14 +7,17 @@
   // Database connectin file
   require_once('connection.php');
 
+  // Obtener id del cohete seleccionado en el frontend
+  $id = isset($_GET['id']) ? $_GET['id'] : '5e9d0d95eda69955f709d1eb';
+
   // Consulta para obtener el costo total de los lanzamientos de todos los cohetes
-  $sql= "SELECT Launches.name as LaunchName,Rockets.name as RocketName, 
+  $sql= "SELECT Launches.name as LaunchName,Rockets.name as RocketName,
     SUM(Rockets.cost_per_launch) as SUMA, LaunchPads.name as LaunchPadName, LaunchPads.region
     FROM Launches
     INNER JOIN Rockets ON Launches.rocket_id = Rockets.rocket_id
     INNER JOIN LaunchPads ON Launches.launchpad_id =
     LaunchPads.launchpad_id
-    WHERE Rockets.rocket_id = '5e9d0d95eda69955f709d1eb'";
+    WHERE Rockets.rocket_id = '$id'";
   $result = mysqli_query($conn, $sql);
 
   // If there are results, return them

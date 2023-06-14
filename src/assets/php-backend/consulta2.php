@@ -7,12 +7,15 @@
   // Database connectin file
   require_once('connection.php');
 
+  // Obtener id del cohete seleccionado en el frontend
+  $id = isset($_GET['id']) ? $_GET['id'] : '5e9d0d95eda69955f709d1eb';
+
   // Consulta para obtener las misiones de un cohete
   $sql= "SELECT missions.name as MissionName, missions.launch_status as LaunchStatus,
                 rockets.name as RocketName
         FROM missions
         INNER JOIN rockets ON missions.rocket_id = rockets.rocket_id
-        WHERE missions.rocket_id = '5e9d0d95eda69955f709d1eb'";
+        WHERE missions.rocket_id = '$id'";
   $result = mysqli_query($conn, $sql);
 
   // If there are results, return them
