@@ -10,6 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent {
+
+  //--VARIABLES--
   valores: any;
   rockets: Array<Rockets>;
   iduser: String="";
@@ -18,7 +20,11 @@ export class IndexComponent {
   flagDelete: boolean=true;
   message: String="";
 
-  constructor(private rocketservice: RocketService, private router: Router, private route: ActivatedRoute){
+  constructor(
+    private rocketservice: RocketService,
+    private router: Router,
+    private route: ActivatedRoute
+  ){
     this.rockets = [];
   }
 
@@ -34,7 +40,9 @@ export class IndexComponent {
      });
 
   }
-//--METHODS--
+
+
+  //--METHODS--
   addRocket(){
     this.router.navigate(['createRocket']);
   }

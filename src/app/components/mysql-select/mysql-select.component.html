@@ -1,0 +1,101 @@
+<!--CONTENEDOR DE SLIDER -->
+<div class="slider-container">
+  <div  class="slider">
+    <select class="form-select" aria-label="Default select example" (change)="selectChangeHandler($event)">
+      <option selected>Select a rocket</option>
+      <option *ngFor="let rocket of rockets_slider" value="{{rocket.rocket_id}}">{{rocket.name}}</option>
+    </select>
+  </div>
+</div>
+
+<!-- TITULO TABLA 1 -->
+<div class="title-container">
+  <div class="title">
+    <h1 class="text-center">Consulta 1: Costo total de lanzamiento</h1>
+  </div>
+</div>
+
+<!-- Contenedor de tabla -->
+<div class="table-container">
+  <table class="table table-hover" id="consulta_susp">
+    <thead class="table-secondary">
+      <tr>
+          <!-- <th scope="col">Id</th> -->
+          <th scope="col">Name</th>
+          <th scope="col">Launch Name</th>
+          <th scope="col">Launch Pad Name</th>
+          <th scope="col">Total cost</th>
+          <th scope="col">Region</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let elem of rockets; let indice=index">
+        <td >{{elem.RocketName}}</td>
+        <td >{{elem.LaunchName}}</td>
+        <td >{{elem.LaunchPadName}}</td>
+        <td >{{elem.SUMA | currency:'USD'}}</td> <!-- pipe for dollar currency:   -->
+        <td >{{elem.region}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- TITULO TABLA 2 -->
+<div class="title-container">
+  <div class="title">
+    <h1 class="text-center">Consulta 2: Misiones de un cohete</h1>
+  </div>
+</div>
+
+<!-- Contenedor de tabla -->
+<div class="table-container">
+  <table class="table table-hover" id="consulta_susp">
+    <thead class="table-secondary">
+      <tr>
+          <!-- <th scope="col">Id</th> -->
+          <th scope="col">Mission Name</th>
+          <th scope="col">Rocket Name</th>
+          <th scope="col">Launch Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let elem of rockets2; let indice=index">
+        <td >{{elem.MissionName}}</td>
+        <td >{{elem.RocketName}}</td>
+        <td >{{elem.LaunchStatus}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- TITULO TABLA 3 -->
+<div class="title-container">
+  <div class="title">
+    <h1 class="text-center">Consulta 3: Los cohetes y las cargas</h1>
+  </div>
+</div>
+
+<!-- Contenedor de tabla -->
+<div class="table-container">
+  <table class="table table-hover" id="consulta_susp">
+    <thead class="table-secondary">
+      <tr>
+          <!-- <th scope="col">Id</th> -->
+          <th scope="col">Rocket Name</th>
+          <th scope="col">Mission Name</th>
+          <th scope="col">Payload Name</th>
+          <th scope="col">Payload Type</th>
+          <th scope="col">Payload Orbit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let elem of rockets3; let indice=index">
+        <td >{{elem.RocketName}}</td>
+        <td >{{elem.MissionName}}</td>
+        <td >{{elem.PayloadName}}</td>
+        <td >{{elem.PayloadType}}</td>
+        <td >{{elem.PayloadOrbit}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

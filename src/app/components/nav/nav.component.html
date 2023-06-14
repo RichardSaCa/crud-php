@@ -5,10 +5,10 @@
       <img src="./assets/svg/icon_menu.svg" alt="menu">
     </button>
     <a href="">
-      <img src="./assets/images/app-logo.png" alt="logo" width="100">
+      <img src="./assets/images/logo.png" alt="logo" width="100">
     </a>
     <a href="">
-      <img src="./assets/svg/icon_shopping_cart.svg" alt="logo">
+      <img src="./assets/images/rocket.png" alt="logo">
     </a>
   </div>
   <div class="side-menu" [ngClass]="{'active': menuStatus,}">
@@ -16,7 +16,9 @@
       Close
     </button>
     <ul>
-      <li><a href="">Home</a></li>
+      <li><a href="">All</a></li>
+      <li><a href="">C1</a></li>
+      <li><a href="">C2</a></li>
     </ul>
   </div>
 </div>
@@ -26,16 +28,22 @@
   <div>
     <nav class="left-part">
       <a class="logo" href="">
-        <img src="./assets/images/app-logo.png" alt="logo" width="100">
+        <img src="./assets/images/logo.png" alt="logo" width="100">
       </a>
       <ul class="left-part menu">
-        <li><a >Home</a></li>
-
+        <li><a href="">All</a></li>
+        <li><a href="">C1</a></li>
+        <li><a href="">C2</a></li>
       </ul>
     </nav>
     <div class="info">
       <div class="account">{{email}}</div>
-
+      <div class="cart">
+        <a>
+          <img class="info-rocket-image" (click)="ocultarLista()" src="./assets/images/rocket.png" alt="logo">
+        </a>
+        <span class="cart-count">{{counter}}</span>
+      </div>
       <div class="cart px-2">
         <button class="btn btn-danger" (click)="cerrarSesion()"><i class="icon ion-md-log"></i> Cerrar Sesión</button>
 
@@ -43,5 +51,3 @@
     </div>
   </div>
 </div>
-
-

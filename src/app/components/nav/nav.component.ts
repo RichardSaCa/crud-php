@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { StoreService } from '../../services/store.service';
 import { UserService } from 'src/app/services/user.service';
-import { ListaProductosService } from 'src/app/services/lista-productos.service';
-
 import { ListaCompras } from 'src/app/models/lista-compras.model';
 import { ListaProductos } from 'src/app/models/lista-producto.model';
 
@@ -30,8 +28,6 @@ export class NavComponent {
     private router: Router,
     private route: ActivatedRoute,
     private auth: Auth,
-    private listaProductosService: ListaProductosService,
-
   ) { }
 
   ngOnInit(): void {
