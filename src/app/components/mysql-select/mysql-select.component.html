@@ -57,3 +57,35 @@
     </tbody>
   </table>
 </div>
+
+<!-- TITULO TABLA 3 -->
+<div class="title-container">
+  <div class="title">
+    <h1 class="text-center">Consulta 3: Los cohetes y las cargas</h1>
+  </div>
+</div>
+
+<!-- Contenedor de tabla -->
+<div class="table-container">
+  <table class="table table-hover" id="consulta_susp">
+    <thead class="table-secondary">
+      <tr>
+          <!-- <th scope="col">Id</th> -->
+          <th scope="col">Rocket Name</th>
+          <th scope="col">Mission Name</th>
+          <th scope="col">Payload Name</th>
+          <th scope="col">Payload Type</th>
+          <th scope="col">Payload Orbit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let elem of rockets3; let indice=index">
+        <td >{{elem.RocketName}}</td>
+        <td >{{elem.MissionName}}</td>
+        <td >{{elem.PayloadName}}</td>
+        <td >{{elem.PayloadType}}</td>
+        <td >{{elem.PayloadOrbit}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
