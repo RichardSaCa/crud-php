@@ -2,7 +2,8 @@
 <app-nav></app-nav>
 <h1 class="fw-bold fs-3 py-3 text-center">{{titulo}} Rocket</h1>
 
-<!--CONTENEDOR DE LA TABLA-->
+<!--CONTENEDOR DE ERROR EN SQL-->
+<div *ngIf="message!=''" class="alert alert-danger container" style="color: red">{{message}}</div>
 <div class="card mx-auto container">
   <div class="card-body justify-content-center align-items-center mx-auto" style="width: 50%;">
       <div class="modal-header">

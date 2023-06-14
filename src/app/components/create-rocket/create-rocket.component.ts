@@ -19,6 +19,7 @@ export class CreateRocketComponent {
     company: '',
     cost_per_launch: 0,
   };
+  message: String="";
   rockets: Array<Rockets>;
   form = this.formBuilder.nonNullable.group({
     rocket_id: ['', [Validators.required]],
@@ -107,10 +108,16 @@ export class CreateRocketComponent {
         company: company,
         cost_per_launch: cost_per_launch,
       };
-      this.rocketservice.updateRocket(this.rocket).subscribe((data) => {
-        this.router.navigateByUrl('/', { skipLocationChange: false }).then(() => {
-          this.router.navigate(['/index']);
-        });
+      this.rocketservice.updateRocket(this.rocket).subscribe((response) => {
+        try {
+          JSON.parse(response);
+          this.router.navigateByUrl('/', { skipLocationChange: false }).then(() => {
+            this.router.navigate(['/index']);
+          });
+        } catch (error) {
+          console.log("inside error try catch")
+          this.message = response.toString();
+        }
       });
 
     }else{
@@ -127,10 +134,17 @@ export class CreateRocketComponent {
         cost_per_launch: cost_per_launch,
       };
 
-      this.rocketservice.createRocket(this.rocket).subscribe((data) => {
-        this.router.navigateByUrl('/', { skipLocationChange: false }).then(() => {
-          this.router.navigate(['/index']);
-        });
+      this.rocketservice.createRocket(this.rocket).subscribe((response) => {
+        try {
+          JSON.parse(response);
+          this.router.navigateByUrl('/', { skipLocationChange: false }).then(() => {
+            this.router.navigate(['/index']);
+          });
+        } catch (error) {
+          console.log("inside error try catch")
+          this.message = response.toString();
+        }
+
       });
     }
   }

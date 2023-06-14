@@ -3,6 +3,7 @@ import { Rockets } from 'src/app/models/rocket.model';
 import { RocketService } from 'src/app/services/rocket.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -41,13 +42,18 @@ export class IndexComponent {
     this.router.navigate(["/createRocket"], { queryParams: { id: idrocket, rocket: rocket }});
   }
   deleteRocket(rocket: Rockets){
-    this.rocketservice.deleteRocket(rocket).subscribe(data =>{
-      this.router.navigateByUrl('/', { skipLocationChange: false }).then(() => {
-        this.router.navigate(['/index']);
-      });
+    this.rocketservice.deleteRocket(rocket).subscribe(response =>{
+      try {
+        JSON.parse(response);
+        this.router.navigateByUrl('/', { skipLocationChange: false }).then(() => {
+          this.router.navigate(['/index']);
+        });
+      } catch (error) {
+        console.log("inside error try catch")
+        this.message = response.toString();
+      }
      });
+
   }
-
-
 
 }
