@@ -24,7 +24,7 @@ export class MysqlSelectComponent {
 
   ngOnInit(): void {
     // Consultar todos los cohetes para llenar slider de id de cohetes
-    this.rocketservice.getRockets().subscribe(result =>{
+    this.rocketservice.getRockets1().subscribe(result =>{
       this.rockets_slider = result;
       //console.log("[app-mysql-select] Rockets List: ", this.rockets);
     })

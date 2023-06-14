@@ -16,6 +16,10 @@ export class RocketService {
   getRockets() {
     return this.http.get(`${this.ApiPhp}/rocket.php`, { responseType: 'text' });
   }
+  getRockets1() {
+    return this.http.get<any>(`${this.ApiPhp}/rocket.php`);
+  }
+
   // createRocket(rocket: Rockets): Observable<Rockets>{
   //   return this.http.post<any>(`${this.ApiPhp2}/createRocket.php`,rocket);
   // }
@@ -34,19 +38,19 @@ export class RocketService {
 
   getConsulta1(id?: string) {
     // Append the id parameter to the URL if it is provided
-    const url = `${this.ApiPhp2}/consulta1.php${id ? `?id=${id}` : ''}`;
+    const url = `${this.ApiPhp}/consulta1.php${id ? `?id=${id}` : ''}`;
 
     // Send the HTTP GET request
     return this.http.get<any>(url);
   }
 
   getConsulta2(id?:string) {
-    const url = `${this.ApiPhp2}/consulta2.php${id ? `?id=${id}` : ''}`;
+    const url = `${this.ApiPhp}/consulta2.php${id ? `?id=${id}` : ''}`;
     return this.http.get<any>(url);
   }
 
   getConsulta3(id?:string) {
-    const url = `${this.ApiPhp2}/consulta3.php${id ? `?id=${id}` : ''}`;
+    const url = `${this.ApiPhp}/consulta3.php${id ? `?id=${id}` : ''}`;
     return this.http.get<any>(url);
   }
 }
