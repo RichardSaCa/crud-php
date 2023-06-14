@@ -1,5 +1,6 @@
 <!--CONTENEDOR DE SLIDER -->
 <div class="slider-container">
+  <h1 class="slider-text">Name of rocket:</h1>
   <div  class="slider">
     <select class="form-select" aria-label="Default select example" (change)="selectChangeHandler($event)">
       <option selected>Select a rocket</option>
@@ -29,13 +30,20 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let elem of rockets; let indice=index">
-        <td >{{elem.RocketName}}</td>
-        <td >{{elem.LaunchName}}</td>
-        <td >{{elem.LaunchPadName}}</td>
-        <td >{{elem.SUMA | currency:'USD'}}</td> <!-- pipe for dollar currency:   -->
-        <td >{{elem.region}}</td>
-      </tr>
+      <ng-container *ngIf="rockets.length>0; else elseTemplate">
+        <tr *ngFor="let elem of rockets; let indice=index">
+          <td>{{elem.RocketName}}</td>
+          <td>{{elem.LaunchName}}</td>
+          <td>{{elem.LaunchPadName}}</td>
+          <td>{{elem.SUMA | currency:'USD'}}</td>
+          <td>{{elem.region}}</td>
+        </tr>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <tr>
+          <td colspan="5">ERROR: {{error1}}</td>
+        </tr>
+      </ng-template>
     </tbody>
   </table>
 </div>
@@ -59,11 +67,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let elem of rockets2; let indice=index">
-        <td >{{elem.MissionName}}</td>
-        <td >{{elem.RocketName}}</td>
-        <td >{{elem.LaunchStatus}}</td>
-      </tr>
+      <ng-container *ngIf="rockets2.length>0; else elseTemplate2">
+        <tr *ngFor="let elem of rockets2; let indice=index">
+          <td >{{elem.MissionName}}</td>
+          <td >{{elem.RocketName}}</td>
+          <td >{{elem.LaunchStatus}}</td>
+        </tr>
+      </ng-container>
+      <ng-template #elseTemplate2>
+        <tr>
+          <td colspan="5">ERROR: {{error2}}</td>
+        </tr>
+      </ng-template>
     </tbody>
   </table>
 </div>
@@ -89,13 +104,20 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let elem of rockets3; let indice=index">
-        <td >{{elem.RocketName}}</td>
-        <td >{{elem.MissionName}}</td>
-        <td >{{elem.PayloadName}}</td>
-        <td >{{elem.PayloadType}}</td>
-        <td >{{elem.PayloadOrbit}}</td>
-      </tr>
+      <ng-container *ngIf="rockets3.length>0; else elseTemplate3">
+        <tr *ngFor="let elem of rockets3; let indice=index">
+          <td >{{elem.RocketName}}</td>
+          <td >{{elem.MissionName}}</td>
+          <td >{{elem.PayloadName}}</td>
+          <td >{{elem.PayloadType}}</td>
+          <td >{{elem.PayloadOrbit}}</td>
+        </tr>
+      </ng-container>
+      <ng-template #elseTemplate3>
+        <tr>
+          <td colspan="5">ERROR: {{error3}}</td>
+        </tr>
+      </ng-template>
     </tbody>
   </table>
 </div>

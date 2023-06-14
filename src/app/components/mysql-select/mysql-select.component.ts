@@ -15,6 +15,9 @@ export class MysqlSelectComponent {
   rockets:any[] = [];
   rockets2:any[] = [];
   rockets3:any[] = [];
+  error1:string = "";
+  error2:string = "";
+  error3:string = "";
 
   constructor(
     private rocketservice: RocketService
@@ -30,15 +33,30 @@ export class MysqlSelectComponent {
     })
     // Consulta 1: Consulta para obtener el costo total de los lanzamientos de un cohete
     this.rocketservice.getConsulta1().subscribe(result =>{
-      this.rockets = result;
-      //console.log("[app-mysql-select] Rockets List: ", this.rockets);
+      // if result has the property "error" then show the error
+      if(result.hasOwnProperty("error")){
+        this.error1 = result["error"];
+        //console.log("[app-mysql-select] Rockets List: ", this.error1);
+      }else{
+        this.rockets = result;
+      }
+      //console.log("[app-mysql-select] Rockets List: ", result);
     })
     this.rocketservice.getConsulta2().subscribe(result =>{
-      this.rockets2 = result;
+      if(result.hasOwnProperty("error")){
+        this.error2 = result["error"];
+        //console.log("[app-mysql-select] Rockets List: ", this.error2);
+      }else{
+        this.rockets2 = result;
+      }
     })
     this.rocketservice.getConsulta3().subscribe(result =>{
-      this.rockets3 = result;
-      //console.log("[app-mysql-select] Rockets List: ", this.rockets3);
+      if(result.hasOwnProperty("error")){
+        this.error3 = result["error"];
+        //console.log("[app-mysql-select] Rockets List: ", this.error1);
+      }else{
+        this.rockets3 = result;
+      }
     })
   }
 
@@ -48,14 +66,36 @@ export class MysqlSelectComponent {
     this.id_sql = event.target.value;
     //console.log("[app-mysql-select] id_sql: ", this.id_sql);
 
+    // limpiar todas las variables
+    this.rockets = [];
+    this.rockets2 = [];
+    this.rockets3 = [];
+
     this.rocketservice.getConsulta1(this.id_sql).subscribe(result =>{
-      this.rockets = result;
+      // if result has the property "error" then show the error
+      if(result.hasOwnProperty("error")){
+        this.error1 = result["error"];
+        //console.log("[app-mysql-select] Rockets List: ", this.error1);
+      }else{
+        this.rockets = result;
+      }
+      //console.log("[app-mysql-select] Rockets List: ", result);
     })
     this.rocketservice.getConsulta2(this.id_sql).subscribe(result =>{
-      this.rockets2 = result;
+      if(result.hasOwnProperty("error")){
+        this.error2 = result["error"];
+        //console.log("[app-mysql-select] Rockets List: ", this.error2);
+      }else{
+        this.rockets2 = result;
+      }
     })
     this.rocketservice.getConsulta3(this.id_sql).subscribe(result =>{
-      this.rockets3 = result;
+      if(result.hasOwnProperty("error")){
+        this.error3 = result["error"];
+        //console.log("[app-mysql-select] Rockets List: ", this.error1);
+      }else{
+        this.rockets3 = result;
+      }
     })
   }
 }

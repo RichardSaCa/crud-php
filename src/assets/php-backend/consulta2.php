@@ -16,16 +16,28 @@
         FROM missions
         INNER JOIN rockets ON missions.rocket_id = rockets.rocket_id
         WHERE missions.rocket_id = '$id'";
-  $result = mysqli_query($conn, $sql);
 
-  // If there are results, return them
-  if (mysqli_num_rows($result) > 0) {
-    $rows = array();
-    while ($row = mysqli_fetch_assoc($result)) {
-      $rows[] = $row;
+  // try catch para intentar realizar la consulta
+  try {
+    $result = mysqli_query($conn, $sql);
+    if(!$result){
+      printf("Error: %s\n", mysqli_error($conn));
     }
-    echo json_encode($rows);
-  } else {
-    echo "No results";
+
+    // If there are results, return them
+    if (mysqli_num_rows($result) > 0) {
+      $rows = array();
+      while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+      }
+      echo json_encode($rows);
+    } else {
+      echo json_encode(array("error" =>"No results"));
+    }
+  } catch (Exception $e) {
+    // Imprimir error en caso de no poder realizar la consulta
+    echo json_encode(array("error" => "Failed to execute the query: " . $e->getMessage()));
   }
+  // Cerrar conexión
+  mysqli_close($conn);
 ?>

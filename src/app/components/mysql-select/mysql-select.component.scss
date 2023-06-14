@@ -1,4 +1,32 @@
 // Table container
+.slider-container {
+  display: flex;
+  margin: 1em 1em;
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  .slider-text {
+    width: 15em;
+    font-size: large;
+    font-weight: 500;
+    padding: 1em;
+  }
+}
+.slider {
+  width: 100%;
+  height: auto;
+  &:last-child {
+    border-left: 1px solid #ddd;
+  }
+  .form-select {
+    width: 100%;
+    height: auto;
+    padding: 1em;
+    &:last-child {
+      border-left: 1px solid #ddd;
+    }
+  }
+}
+
 .title-container {
   margin: 1em 1em;
   border-radius: 5px 5px 0 0;

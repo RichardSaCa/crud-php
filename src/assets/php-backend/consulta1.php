@@ -4,7 +4,7 @@
   header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE'); // Permitir los métodos HTTP necesarios
   header('Access-Control-Allow-Headers: Content-Type'); // Permitir los encabezados necesarios
 
-  // Database connectin file
+  // Database connection file
   require_once('connection.php');
 
   // Obtener id del cohete seleccionado en el frontend
@@ -18,16 +18,28 @@
     INNER JOIN LaunchPads ON Launches.launchpad_id =
     LaunchPads.launchpad_id
     WHERE Rockets.rocket_id = '$id'";
-  $result = mysqli_query($conn, $sql);
 
-  // If there are results, return them
-  if (mysqli_num_rows($result) > 0) {
-    $rows = array();
-    while ($row = mysqli_fetch_assoc($result)) {
-      $rows[] = $row;
+  // try catch para intentar realizar la consulta
+  try {
+    $result = mysqli_query($conn, $sql);
+    if(!$result){
+      printf("Error: %s\n", mysqli_error($conn));
     }
-    echo json_encode($rows);
-  } else {
-    echo "No results";
+
+    // If there are results, return them
+    if (mysqli_num_rows($result) > 0) {
+      $rows = array();
+      while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+      }
+      echo json_encode($rows);
+    } else {
+      echo "No results";
+    }
+  } catch (Exception $e) {
+    // Imprimir error en caso de no poder realizar la consulta
+    echo json_encode(array("error" => "Failed to execute the query: " . $e->getMessage()));
   }
+  // Cerrar conexión
+  mysqli_close($conn);
 ?>
